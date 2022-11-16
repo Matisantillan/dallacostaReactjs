@@ -1,0 +1,17 @@
+.UserSection{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.TamañoImg{
+    max-height: 350%;
+    max-width: 35%;
+}
+
+.ItemDetail{
+    display: flex;
+    flex-direction: row;
+}
