@@ -1,13 +1,18 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { cartContext } from '../Context/CartProvider';
 import ItemCounter from '../ItemCounter/ItemCounter';
 
+
+
 const ItemDetail = ({producto}) => {
-
-    
-
+  const [counter, setCounter] = useState(1);
+  
+  const {cart, addToCart}= useContext(cartContext)
+  
   return (
     <div className="card mb-3 bg-light" >
+      
           <div className="row g-0">
           <div className="col-md-4">
           <img src={producto.image} className="img-fluid rounded-start TamañoImg" alt="..." />
@@ -24,8 +29,16 @@ const ItemDetail = ({producto}) => {
           
           
           </div>
-            <ItemCounter />
-
+          <p>Cantidad: {counter}</p>
+            <ItemCounter setCounter={setCounter}/>
+            
+            <div className="d-grid  d-md-flex justify-content-md-center">
+                  <button 
+                      className="btn btn-secondary me-md-3"
+                      type="button" onClick={() => addToCart(producto, counter)}>Agregar al Carrito</button>
+                  
+                </div>
+                
 
           </div>
           
@@ -33,5 +46,6 @@ const ItemDetail = ({producto}) => {
           
           </div>
   )
+  
 }
 export default ItemDetail

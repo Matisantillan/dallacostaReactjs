@@ -1,35 +1,30 @@
 import React from 'react'
 import { useState } from 'react';
 
-const ItemCounter = () => {
+const ItemCounter = ({setCounter}) => {
 
-    const [counter, setCounter] = useState(1);
+    
   const handlerCounterUp = () => {
-    setCounter(counter + 1);
+    setCounter((currentValue) => currentValue + 1);
   };
   const handlerCounterDown = (event) => {
-      if(counter===0){
-        event.preventDefault()
-      } else{
-        setCounter(counter - 1);
-      }
-   
     
-  };
-
-  
-  const addToCart = () => {
-    
-    console.log("Se agregó " +counter+ " del producto al carrito")
+      setCounter((currentValue) => {
+        if(currentValue>1) {
+          return currentValue -1
+        }else{
+          return currentValue
+        }
+      
+      });
   }
 
   
 
-
   return (
     <div id="contadorPadre">
             <div id="contadorHijo" className="Counter">
-              <p>Cantidad: {counter}</p>
+              
                 <div className="d-grid gap-2 d-md-block">
                   <button
                       className="btn btn-success"
@@ -46,19 +41,30 @@ const ItemCounter = () => {
                       -
                   </button>
                 </div>
-                <div className="d-grid  d-md-flex justify-content-md-center">
-                  <button
-                      className="btn btn-secondary me-md-3"
-                      type="button"
-                      onClick={addToCart}
-                  >   
-                      Agregar al Carrito
-                  </button>
-                  
-                </div>
+                
               </div>
               
             </div>
   )
 }
+
+/*
+const handlerCounterDown = (event) => {
+      if(currentValue===1){
+        event.preventDefault()
+      } else{
+        setCounter((currentValue) => currentValue - 1);
+      }
+   
+    
+  };
+
+  
+  const addToCart = () => {
+    
+    console.log("Se agregó " +currentValue+ " del producto al carrito")
+  }
+  */
+
+
 export default ItemCounter

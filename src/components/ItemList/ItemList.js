@@ -8,7 +8,7 @@ import "../ItemList/ItemList.css"
 const ItemList = () => {
     const [productList, setProductList] = useState ([])
     const {categoryName} = useParams()
-    console.log(categoryName)
+    
 
     const getProducts = () => {
         if (categoryName){
